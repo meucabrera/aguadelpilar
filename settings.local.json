@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(start:*)",
+      "WebSearch",
+      "WebFetch(domain:www.pexels.com)",
+      "Bash(curl:*)",
+      "WebFetch(domain:www.hjezeiza.com.ar)",
+      "Bash(ls:*)"
+    ]
+  }
+}
