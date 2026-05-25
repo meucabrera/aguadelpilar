@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiencia Pilates Barre | Agua del Pilar</title>
+  <meta name="description" content="Un encuentro boutique exclusivo de Pilates Barre by Agua del Pilar. Cupos limitados. 10 de agosto, 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --crema: #F7F1E8;
+      --taupe: #8B7D73;
+      --taupe-light: #B8AEA6;
+      --dorado: #C8A96B;
+      --negro: #0F0F10;
+      --beige: #EFE7DC;
+      --blanco: #FDFAF5;
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'Cormorant Garamond', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background-color: var(--crema);
+      color: var(--negro);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: center; align-items: center;
+      padding: 1.2rem 2rem;
+      background: rgba(247,241,232,.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(139,125,115,.1);
+      transition: all .3s;
+    }
+    nav.scrolled { padding: .8rem 2rem; box-shadow: 0 2px 20px rgba(0,0,0,.06); }
+    nav .brand {
+      font-family: var(--font-display); font-size: 1.15rem;
+      letter-spacing: .25em;
+      color: var(--negro); text-decoration: none;
+    }
+    nav .brand span { color: var(--dorado); }
+
+    /* ── HERO (fondo flores claro) ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center;
+      position: relative;
+      padding: 6rem 1.5rem 4rem;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: url('img/flores-light.jpeg') center/cover no-repeat;
+    }
+    .hero::after {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(247,241,232,.4);
+    }
+    .hero > * { position: relative; z-index: 2; }
+    .hero-content {
+      background: rgba(247,241,232,.75);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(200,169,107,.2);
+      padding: 3.5rem 3.5rem 3rem;
+      max-width: 780px; width: 100%;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .hero-eyebrow {
+      font-size: clamp(.85rem, 2vw, 1rem);
+      letter-spacing: .35em; text-transform: uppercase;
+      color: #A8893A; margin-bottom: 1.5rem; font-weight: 600;
+      text-shadow: 0 1px 6px rgba(247,241,232,.8);
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 7vw, 5rem);
+      font-weight: 500; line-height: 1.12;
+      max-width: 850px; margin-bottom: 1.2rem; color: var(--negro);
+      text-shadow: 0 1px 8px rgba(247,241,232,.7), 0 0 40px rgba(247,241,232,.5);
+    }
+    .hero h1 em { font-style: italic; color: var(--taupe); text-shadow: inherit; }
+    .hero-sub {
+      font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+      color: var(--negro); max-width: 550px;
+      line-height: 1.6; margin-bottom: 3rem; font-weight: 400;
+      text-shadow: 0 1px 6px rgba(247,241,232,.6);
+    }
+
+    /* ── COUNTDOWN ── */
+    .countdown-wrapper {
+      margin-bottom: 3rem; padding: 2.5rem 3rem;
+      background: transparent;
+    }
+    .countdown-label {
+      font-family: var(--font-display); font-style: italic;
+      font-size: 1.1rem; letter-spacing: .15em;
+      color: var(--taupe); margin-bottom: 1.8rem; font-weight: 400;
+      text-shadow: 0 1px 6px rgba(247,241,232,.6);
+    }
+    .countdown {
+      display: flex; gap: .5rem;
+      justify-content: center; align-items: center; flex-wrap: wrap;
+    }
+    .countdown-item {
+      display: flex; flex-direction: column; align-items: center;
+      min-width: 85px; padding: 1.2rem .8rem;
+      border: 1px solid rgba(200,169,107,.25);
+      background: rgba(255,255,255,.45);
+      backdrop-filter: blur(8px);
+    }
+    .countdown-item .number {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 7vw, 3.8rem);
+      font-weight: 600; color: var(--negro); line-height: 1;
+      text-shadow: 0 1px 6px rgba(247,241,232,.5);
+    }
+    .countdown-item .unit {
+      font-size: clamp(.65rem, 1.2vw, .78rem);
+      letter-spacing: .3em; text-transform: uppercase;
+      color: var(--taupe); margin-top: .7rem; font-weight: 500;
+    }
+    .countdown-sep {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      color: var(--dorado); opacity: .6;
+      align-self: flex-start; margin-top: .8rem;
+      animation: pulse-sep 2s ease-in-out infinite;
+    }
+    @keyframes pulse-sep { 0%,100%{opacity:.6} 50%{opacity:.2} }
+    .countdown-date {
+      margin-top: 1.5rem; font-size: 1.05rem;
+      letter-spacing: .12em; color: var(--negro); font-weight: 400;
+      text-shadow: 0 1px 6px rgba(247,241,232,.6);
+    }
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-block; font-family: var(--font-body);
+      font-size: 1.05rem; letter-spacing: .25em; text-transform: uppercase;
+      text-decoration: none; padding: 1.1rem 3rem;
+      border: 1.5px solid var(--negro); color: var(--negro);
+      background: transparent; cursor: pointer;
+      transition: all .4s ease; position: relative; overflow: hidden;
+    }
+    .btn::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--negro); transform: scaleX(0);
+      transform-origin: left; transition: transform .4s ease; z-index: -1;
+    }
+    .btn:hover { color: var(--crema); }
+    .btn:hover::before { transform: scaleX(1); }
+    .btn-dark {
+      background: var(--negro); color: var(--crema);
+      border-color: var(--negro); font-weight: 600;
+      font-size: 1.1rem; padding: 1.2rem 3.5rem;
+    }
+    .btn-dark::before { background: var(--dorado); }
+    .btn-dark:hover { color: var(--negro); border-color: var(--dorado); }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 1.5rem; }
+    .container { max-width: 960px; margin: 0 auto; }
+
+    .section-eyebrow {
+      font-size: .8rem; letter-spacing: .35em; text-transform: uppercase;
+      color: var(--taupe); margin-bottom: .8rem; display: block;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4.5vw, 3rem);
+      font-weight: 400; line-height: 1.2; margin-bottom: 1.5rem;
+    }
+    h2 em { font-style: italic; color: var(--taupe); }
+
+    .body-text {
+      font-size: clamp(1.1rem, 2vw, 1.25rem);
+      line-height: 1.8; font-weight: 300; max-width: 680px;
+    }
+    .body-text + .body-text { margin-top: 1.2rem; }
+
+    .divider { width: 60px; height: 1px; background: var(--taupe); margin: 3rem auto; opacity: .4; }
+    .gold-line { width: 40px; height: 2px; background: var(--dorado); margin: 1.5rem 0; }
+    .gold-line-center { margin-left: auto; margin-right: auto; }
+
+    /* ── ABOUT (blanco liso) ── */
+    .about {
+      text-align: center; background: var(--blanco);
+    }
+    .about .body-text { margin-left: auto; margin-right: auto; }
+
+    /* ── PILATES INFO (beige liso) ── */
+    .section-beige { background: var(--beige); }
+    .pilates-info {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem; align-items: center;
+    }
+    .pilates-info-img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+
+    /* ── QUE INCLUYE (negro liso) ── */
+    .section-dark { background: var(--negro); color: var(--crema); }
+    .section-dark .section-eyebrow { color: var(--dorado); }
+    .section-dark h2 { color: var(--crema); }
+    .section-dark h2 em { color: var(--dorado); }
+    .includes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem; margin-top: 2.5rem;
+    }
+    .include-card {
+      text-align: center; padding: 2.5rem 1.5rem;
+      border: 1px solid rgba(200,169,107,.2);
+      background: rgba(247,241,232,.04);
+      transition: all .4s ease;
+    }
+    .include-card:hover {
+      border-color: var(--dorado);
+      background: rgba(200,169,107,.08);
+      transform: translateY(-4px);
+    }
+    .include-card .icon { font-size: 1.8rem; color: var(--dorado); margin-bottom: 1.2rem; display: block; }
+    .include-card h3 {
+      font-family: var(--font-display); font-size: 1.2rem;
+      font-weight: 500; margin-bottom: .8rem; color: var(--crema);
+    }
+    .include-card p { font-size: 1.05rem; color: var(--taupe-light); line-height: 1.6; font-weight: 300; }
+
+    /* ── BANNER FRASE (fondo flores oscuro) ── */
+    .floral-banner {
+      position: relative; min-height: 400px;
+      display: flex; justify-content: center; align-items: center;
+      text-align: center; padding: 5rem 1.5rem; overflow: hidden;
+    }
+    .floral-banner::before {
+      content: ''; position: absolute; inset: 0;
+      background: url('img/flores-dark.jpeg') center/cover no-repeat;
+    }
+    .floral-banner::after {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(15,15,16,.55);
+    }
+    .floral-banner > * { position: relative; z-index: 2; }
+    .floral-banner h2 {
+      font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+      max-width: 650px; line-height: 1.4; margin-bottom: 0; color: #fff;
+      text-shadow: 0 2px 12px rgba(0,0,0,.5), 0 0 40px rgba(0,0,0,.3);
+      font-weight: 500;
+    }
+    .floral-banner h2 em { color: var(--dorado); text-shadow: 0 2px 12px rgba(0,0,0,.5); }
+    .floral-banner .btn {
+      border-color: #fff; color: #fff;
+      text-shadow: 0 1px 4px rgba(0,0,0,.3);
+      font-weight: 500;
+    }
+    .floral-banner .btn::before { background: #fff; }
+    .floral-banner .btn:hover { color: var(--negro); text-shadow: none; }
+
+    /* ── ITINERARIO (crema liso) ── */
+    .section-crema { background: var(--crema); }
+    .timeline { margin-top: 2.5rem; position: relative; padding-left: 2.5rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 1px; background: linear-gradient(to bottom, transparent, var(--dorado), transparent);
+    }
+    .timeline-item { position: relative; padding-bottom: 2.5rem; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item::before {
+      content: ''; position: absolute;
+      left: -2.5rem; top: .4rem; width: 9px; height: 9px;
+      background: var(--dorado); border-radius: 50%; transform: translateX(-4px);
+    }
+    .timeline-item .time {
+      font-family: var(--font-display); font-size: 1.35rem;
+      font-weight: 600; color: var(--taupe); margin-bottom: .4rem;
+    }
+    .timeline-item .desc { font-size: 1.15rem; color: var(--negro); font-weight: 400; line-height: 1.5; }
+
+    /* ── INFO (blanco liso) ── */
+    .info-list { list-style: none; margin-top: 1.5rem; }
+    .info-list li {
+      font-size: 1.15rem; line-height: 1.6; padding: 1rem 0;
+      border-bottom: 1px solid rgba(139,125,115,.15);
+      padding-left: 1.4rem; position: relative; font-weight: 300;
+    }
+    .info-list li::before {
+      content: ''; position: absolute; left: 0; top: 50%;
+      transform: translateY(-50%); width: 6px; height: 6px;
+      background: var(--dorado); border-radius: 50%;
+    }
+
+    /* ── RESERVA (foto flores oscuras de fondo) ── */
+    .reserva-section {
+      position: relative; min-height: 550px;
+      display: flex; justify-content: center; align-items: center;
+      text-align: center; padding: 6rem 1.5rem; overflow: hidden;
+    }
+    .reserva-section::before {
+      content: ''; position: absolute; inset: 0;
+      background: url('img/flores-reserva.jpeg') center/cover no-repeat;
+    }
+    .reserva-section::after {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(15,15,16,.5);
+    }
+    .reserva-section > * { position: relative; z-index: 2; }
+    .reserva-content {
+      background: rgba(15,15,16,.45);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(200,169,107,.3);
+      padding: 3.5rem 3rem; max-width: 650px;
+    }
+    .reserva-section .section-eyebrow { color: var(--dorado); }
+    .reserva-section h2 { color: var(--crema); font-size: clamp(2rem, 5vw, 3.2rem); }
+    .reserva-section h2 em { color: var(--dorado); }
+    .reserva-section .body-text { color: var(--crema); opacity: .85; margin: 0 auto; text-align: center; }
+    .reserva-date {
+      font-family: var(--font-display); font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--taupe-light); letter-spacing: .1em;
+    }
+    .reserva-date strong { color: var(--dorado); font-weight: 600; }
+    .reserva-btn {
+      display: inline-block; font-family: var(--font-body);
+      font-size: 1.2rem; letter-spacing: .25em; text-transform: uppercase;
+      text-decoration: none; padding: 1.3rem 3.5rem;
+      background: var(--dorado); color: var(--negro);
+      border: 2px solid var(--dorado); cursor: pointer;
+      transition: all .4s ease; font-weight: 700;
+    }
+    .reserva-btn:hover {
+      background: var(--crema); color: var(--negro);
+      border-color: var(--crema); transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(200,169,107,.4);
+    }
+
+    /* ── FAQ (beige liso) ── */
+    .faq-section { background: var(--beige); padding: 6rem 1.5rem; }
+    .faq-list { margin-top: 2rem; }
+    .faq-item { border-bottom: 1px solid rgba(139,125,115,.2); }
+    .faq-question {
+      width: 100%; background: none; border: none; text-align: left;
+      padding: 1.4rem 2.5rem 1.4rem 0;
+      font-family: var(--font-display); font-size: clamp(1.05rem, 2vw, 1.25rem);
+      font-weight: 500; color: var(--negro); cursor: pointer;
+      position: relative; line-height: 1.4; transition: color .3s;
+    }
+    .faq-question:hover { color: var(--taupe); }
+    .faq-question::after {
+      content: '+'; position: absolute; right: 0; top: 50%;
+      transform: translateY(-50%); font-family: var(--font-body);
+      font-size: 1.5rem; font-weight: 300; color: var(--dorado);
+    }
+    .faq-item.open .faq-question::after { content: '\2212'; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height .4s ease, padding .4s ease; }
+    .faq-item.open .faq-answer { max-height: 300px; padding-bottom: 1.4rem; }
+    .faq-answer p { font-size: 1.1rem; line-height: 1.7; color: var(--taupe); font-weight: 300; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 3rem 1.5rem 2rem;
+      border-top: 1px solid rgba(139,125,115,.1); background: var(--crema);
+    }
+    footer .brand-footer {
+      font-family: var(--font-display); font-size: 1.15rem;
+      letter-spacing: .25em;
+      color: var(--negro); display: block; margin-bottom: 1rem;
+      text-decoration: none;
+    }
+    footer p { font-size: .9rem; color: var(--taupe); font-weight: 300; }
+    footer a { color: var(--dorado); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    footer .socials { margin-top: 1rem; display: flex; justify-content: center; gap: 1.5rem; }
+    footer .socials a { font-size: .8rem; letter-spacing: .15em; text-transform: uppercase; color: var(--taupe); transition: color .3s; }
+    footer .socials a:hover { color: var(--dorado); }
+
+    /* ── SEDE (venue) ── */
+    .venue-section { background: var(--blanco); }
+    .venue-header { text-align: center; margin-bottom: 2.5rem; }
+    .venue-gallery {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1rem; margin-bottom: 2.5rem;
+    }
+    .venue-gallery img {
+      width: 100%; aspect-ratio: 4/3; object-fit: cover;
+      border: 1px solid rgba(139,125,115,.1);
+      transition: transform .4s ease;
+    }
+    .venue-gallery img:hover { transform: scale(1.03); }
+    .venue-info {
+      display: flex; align-items: center; gap: 2.5rem;
+      padding: 2rem 2.5rem;
+      border: 1px solid rgba(200,169,107,.2);
+      background: var(--crema);
+    }
+    .venue-info-text { flex: 1; }
+    .venue-info-text h3 {
+      font-family: var(--font-display); font-size: 1.4rem;
+      font-weight: 500; margin-bottom: .6rem;
+    }
+    .venue-info-text p {
+      font-size: 1.05rem; color: var(--taupe); line-height: 1.6; font-weight: 300;
+    }
+    .venue-map-link {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: var(--font-body); font-size: 1rem;
+      letter-spacing: .15em; text-transform: uppercase;
+      text-decoration: none; color: var(--negro);
+      border: 1.5px solid var(--negro); padding: .9rem 2rem;
+      transition: all .4s ease; white-space: nowrap;
+    }
+    .venue-map-link:hover { background: var(--negro); color: var(--crema); }
+
+    /* ── ANIMATIONS ── */
+    .fade-in { opacity: 0; transform: translateY(35px); transition: opacity .9s ease, transform .9s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-in-delay-1 { transition-delay: .15s; }
+    .fade-in-delay-2 { transition-delay: .3s; }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE — MOBILE EXPERIENCE
+       ══════════════════════════════════════ */
+
+    /* Tablets */
+    @media(max-width:768px){
+      section { padding: 4rem 1.2rem; }
+
+      /* Nav */
+      nav { padding: 1rem 1.2rem; }
+      nav.scrolled { padding: .7rem 1.2rem; }
+      nav .brand { font-size: 1.05rem; letter-spacing: .2em; }
+
+      /* Hero */
+      .hero { min-height: 100svh; padding: 5rem 1.2rem 3rem; }
+      .hero-content { padding: 2.5rem 2rem 2rem; }
+      .hero h1 { font-size: clamp(2rem, 6vw, 3.5rem); margin-bottom: 1rem; }
+      .hero-sub { margin-bottom: 2rem; }
+      .countdown-wrapper { padding: 1.5rem .5rem; margin-bottom: 2rem; }
+      .countdown { gap: .4rem; }
+      .countdown-item { min-width: 70px; padding: 1rem .6rem; }
+      .countdown-sep { margin-top: .6rem; }
+
+      /* Buttons */
+      .btn { padding: 1rem 2rem; font-size: .95rem; letter-spacing: .2em; }
+      .btn-dark { padding: 1rem 2.5rem; font-size: 1rem; }
+
+      /* Pilates info */
+      .pilates-info { grid-template-columns: 1fr; gap: 2rem; }
+      .pilates-info-img { aspect-ratio: 16/10; max-height: 350px; }
+
+      /* Include cards */
+      .includes-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .include-card { padding: 2rem 1.2rem; }
+
+      /* Banner */
+      .floral-banner { min-height: 320px; padding: 4rem 1.5rem; }
+
+      /* Timeline */
+      .timeline { padding-left: 2rem; }
+      .timeline-item::before { left: -2rem; }
+
+      /* Venue */
+      .venue-gallery { grid-template-columns: 1fr 1fr; gap: .8rem; }
+      .venue-gallery img:last-child { grid-column: 1 / -1; max-height: 250px; }
+      .venue-info { flex-direction: column; text-align: center; padding: 1.5rem; gap: 1.5rem; }
+
+      /* Reserva */
+      .reserva-section { min-height: 450px; padding: 4rem 1.2rem; }
+      .reserva-content { padding: 2.5rem 2rem; }
+      .reserva-btn { padding: 1.1rem 2.5rem; font-size: 1.05rem; }
+
+      /* FAQ */
+      .faq-section { padding: 4rem 1.2rem; }
+      .faq-question { padding: 1.2rem 2rem 1.2rem 0; }
+    }
+
+    /* Mobile small */
+    @media(max-width:500px){
+      section { padding: 3.5rem 1rem; }
+
+      /* Nav */
+      nav { padding: .9rem 1rem; }
+      nav.scrolled { padding: .7rem 1rem; }
+      nav .brand { font-size: .95rem; letter-spacing: .18em; }
+
+      /* Hero */
+      .hero { min-height: 100svh; padding: 4.5rem .8rem 2.5rem; }
+      .hero-content { padding: 2rem 1.2rem 1.8rem; }
+      .hero-eyebrow { font-size: .75rem; letter-spacing: .25em; margin-bottom: 1rem; }
+      .hero h1 { font-size: 1.85rem; line-height: 1.18; margin-bottom: .8rem; }
+      .hero-sub { font-size: 1.05rem; line-height: 1.5; margin-bottom: 1.5rem; }
+
+      /* Countdown */
+      .countdown-wrapper { padding: 1.2rem .3rem; margin-bottom: 1.5rem; }
+      .countdown-label { font-size: .95rem; margin-bottom: 1.2rem; }
+      .countdown { gap: .3rem; }
+      .countdown-item { min-width: 58px; padding: .8rem .4rem; }
+      .countdown-item .number { font-size: 1.9rem; }
+      .countdown-item .unit { font-size: .6rem; letter-spacing: .2em; margin-top: .5rem; }
+      .countdown-sep { font-size: 1.3rem; margin-top: .5rem; }
+      .countdown-date { font-size: .9rem; margin-top: 1rem; }
+
+      /* Buttons */
+      .btn { padding: .9rem 1.8rem; font-size: .9rem; letter-spacing: .18em; width: 100%; text-align: center; }
+      .btn-dark { padding: 1rem 1.5rem; font-size: .95rem; width: 100%; text-align: center; }
+
+      /* Sections general */
+      h2 { font-size: 1.6rem; margin-bottom: 1rem; }
+      .body-text { font-size: 1.05rem; line-height: 1.7; }
+      .section-eyebrow { font-size: .7rem; letter-spacing: .3em; }
+
+      /* About */
+      .about { padding: 3.5rem 1rem; }
+      .divider { margin: 2rem auto; }
+
+      /* Pilates info */
+      .pilates-info { gap: 1.5rem; }
+      .pilates-info-img { aspect-ratio: 16/9; max-height: 280px; }
+
+      /* Include cards */
+      .includes-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .include-card { padding: 1.8rem 1.2rem; }
+      .include-card .icon { font-size: 1.5rem; margin-bottom: .8rem; }
+      .include-card h3 { font-size: 1.1rem; }
+      .include-card p { font-size: 1rem; }
+
+      /* Banner */
+      .floral-banner { min-height: 280px; padding: 3rem 1.2rem; }
+      .floral-banner h2 { font-size: 1.5rem; line-height: 1.35; }
+      .floral-banner .btn { width: auto; }
+
+      /* Timeline */
+      .timeline { padding-left: 1.8rem; }
+      .timeline-item::before { left: -1.8rem; width: 7px; height: 7px; }
+      .timeline-item .time { font-size: 1.15rem; }
+      .timeline-item .desc { font-size: 1.05rem; }
+      .timeline-item { padding-bottom: 2rem; }
+
+      /* Venue */
+      .venue-section { padding: 3.5rem 1rem; }
+      .venue-header { margin-bottom: 1.8rem; }
+      .venue-gallery { grid-template-columns: 1fr; gap: .6rem; }
+      .venue-gallery img { aspect-ratio: 16/9; }
+      .venue-gallery img:last-child { grid-column: auto; max-height: none; }
+      .venue-info { padding: 1.2rem; gap: 1rem; }
+      .venue-info-text h3 { font-size: 1.15rem; }
+      .venue-info-text p { font-size: .95rem; }
+      .venue-map-link { padding: .8rem 1.5rem; font-size: .9rem; width: 100%; justify-content: center; }
+
+      /* Info list */
+      .info-list li { font-size: 1.05rem; padding: .9rem 0 .9rem 1.2rem; }
+
+      /* Reserva */
+      .reserva-section { min-height: auto; padding: 3.5rem .8rem; }
+      .reserva-content { padding: 2rem 1.2rem; }
+      .reserva-section h2 { font-size: 1.7rem; }
+      .reserva-section .body-text { font-size: 1rem; }
+      .reserva-date { font-size: .9rem !important; }
+      .reserva-btn { padding: 1rem 2rem; font-size: 1rem; letter-spacing: .2em; width: 100%; text-align: center; }
+
+      /* FAQ */
+      .faq-section { padding: 3.5rem 1rem; }
+      .faq-question { padding: 1.1rem 2rem 1.1rem 0; font-size: 1rem; }
+      .faq-question::after { font-size: 1.3rem; }
+      .faq-answer p { font-size: 1rem; line-height: 1.6; }
+
+      /* Footer */
+      footer { padding: 2.5rem 1rem 1.5rem; }
+      footer .brand-footer { font-size: 1rem; }
+      footer p { font-size: .85rem; }
+      footer .socials { gap: 1.2rem; }
+      footer .socials a { font-size: .75rem; }
+    }
+
+    /* Extra small (iPhone SE, etc) */
+    @media(max-width:370px){
+      .hero-content { padding: 1.5rem 1rem 1.5rem; }
+      .hero h1 { font-size: 1.6rem; }
+      .hero-sub { font-size: .95rem; }
+      .countdown-item { min-width: 50px; padding: .7rem .3rem; }
+      .countdown-item .number { font-size: 1.6rem; }
+      .countdown-sep { font-size: 1.1rem; }
+      h2 { font-size: 1.4rem; }
+      .floral-banner h2 { font-size: 1.3rem; }
+      .reserva-section h2 { font-size: 1.5rem; }
+    }
+
+    /* Touch device enhancements */
+    @media(hover:none){
+      .include-card:hover { transform: none; }
+      .venue-gallery img:hover { transform: none; }
+      .btn:active { opacity: .8; }
+      .btn-dark:active { opacity: .8; }
+      .reserva-btn:active { opacity: .8; transform: none; }
+      .venue-map-link:active { background: var(--negro); color: var(--crema); }
+    }
+
+    /* Safe area for notch devices */
+    @supports(padding: env(safe-area-inset-bottom)){
+      footer { padding-bottom: calc(1.5rem + env(safe-area-inset-bottom)); }
+      nav { padding-left: max(1rem, env(safe-area-inset-left)); padding-right: max(1rem, env(safe-area-inset-right)); }
+    }
+
+    /* Use svh for modern mobile browsers */
+    @supports(min-height: 100svh){
+      .hero { min-height: 100svh; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="https://www.aguadelpilar.com.ar" class="brand">Agua <span>del</span> Pilar</a>
+</nav>
+
+<!-- 1. HERO — fondo: flores claro + velo crema -->
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <p class="hero-eyebrow">Viv&iacute; una experiencia exclusiva</p>
+    <h1>Pilates Barre<br>by <em>Agua del Pilar</em></h1>
+    <p class="hero-sub">No es solo movimiento.<br>Es conectar, respirar y volver a vos.</p>
+    <div class="countdown-wrapper">
+      <p class="countdown-label">Faltan</p>
+      <div class="countdown" id="countdown">
+        <div class="countdown-item"><span class="number" id="cd-days">--</span><span class="unit">D&iacute;as</span></div>
+        <span class="countdown-sep">:</span>
+        <div class="countdown-item"><span class="number" id="cd-hours">--</span><span class="unit">Horas</span></div>
+        <span class="countdown-sep">:</span>
+        <div class="countdown-item"><span class="number" id="cd-mins">--</span><span class="unit">Min</span></div>
+        <span class="countdown-sep">:</span>
+        <div class="countdown-item"><span class="number" id="cd-secs">--</span><span class="unit">Seg</span></div>
+      </div>
+      <p class="countdown-date">10 de agosto, 2026 &middot; Buenos Aires</p>
+    </div>
+    <a href="https://aguadelpilar.mitiendanube.com/checkout" target="_blank" rel="noopener" class="btn-dark btn">Reserv&aacute; tu lugar</a>
+  </div>
+</section>
+
+<!-- 2. SOBRE LA EXPERIENCIA — blanco liso -->
+<section class="about" id="experiencia">
+  <div class="container fade-in">
+    <span class="section-eyebrow">Sobre la experiencia</span>
+    <h2>Un encuentro boutique dise&ntilde;ado<br>para <em>reconectar</em></h2>
+    <div class="gold-line gold-line-center"></div>
+    <p class="body-text">Una experiencia &iacute;ntima en grupo reducido, creada para quienes buscan moverse desde un lugar m&aacute;s consciente, conectando cuerpo, mente y energ&iacute;a en un entorno de bienestar, presencia y estilo.</p>
+    <p class="body-text">Un espacio pensado para disfrutar el movimiento de forma arm&oacute;nica, compartir, inspirarse y reconectar con una versi&oacute;n m&aacute;s aut&eacute;ntica de una misma.</p>
+    <div class="divider"></div>
+    <p class="body-text" style="color:var(--taupe); font-style:italic; font-size:1.2rem;">Un espacio para reconectar tambi&eacute;n desde adentro.</p>
+  </div>
+</section>
+
+<!-- 3. QUE ES PILATES BARRE — beige liso -->
+<section class="section-beige" id="pilates">
+  <div class="container">
+    <div class="pilates-info fade-in">
+      <div>
+        <span class="section-eyebrow">La disciplina</span>
+        <h2>&iquest;Qu&eacute; es <em>Pilates Barre</em>?</h2>
+        <div class="gold-line"></div>
+        <p class="body-text">Pilates Barre es una disciplina de bajo impacto que fusiona pilates, barre y entrenamiento funcional mediante movimientos conscientes y controlados.</p>
+        <p class="body-text">A trav&eacute;s de ejercicios de fuerza, equilibrio y activaci&oacute;n del core, ayuda a tonificar el cuerpo, mejorar la postura y aumentar la flexibilidad, generando una conexi&oacute;n m&aacute;s profunda entre cuerpo y mente.</p>
+        <p class="body-text" style="margin-top:1.5rem; font-style:italic; color:var(--taupe);">M&aacute;s que una clase, es una experiencia de bienestar y movimiento.</p>
+      </div>
+      <img src="img/pilates-studio.jpeg" alt="Estudio de Pilates Barre con camas reformer" class="pilates-info-img">
+    </div>
+  </div>
+</section>
+
+<!-- 4. QUE INCLUYE — negro liso -->
+<section class="section-dark" id="incluye">
+  <div class="container fade-in">
+    <div style="text-align:center; margin-bottom:1rem;">
+      <span class="section-eyebrow">Todo pensado para vos</span>
+      <h2>&iquest;Qu&eacute; incluye <em>tu acceso</em>?</h2>
+      <div class="gold-line gold-line-center"></div>
+    </div>
+    <div class="includes-grid">
+      <div class="include-card fade-in"><span class="icon">&#10022;</span><h3>Masterclass de Pilates Barre</h3><p>Clase guiada en un entorno boutique cuidadosamente ambientado.</p></div>
+      <div class="include-card fade-in fade-in-delay-1"><span class="icon">&#10022;</span><h3>Elongaci&oacute;n y respiraci&oacute;n</h3><p>Sesi&oacute;n de relajaci&oacute;n y respiraci&oacute;n consciente para reconectar cuerpo y mente.</p></div>
+      <div class="include-card fade-in fade-in-delay-1"><span class="icon">&#10022;</span><h3>Brunch saludable</h3><p>Catering saludable durante el evento para disfrutar y compartir.</p></div>
+      <div class="include-card fade-in fade-in-delay-2"><span class="icon">&#10022;</span><h3>M&uacute;sica y conexi&oacute;n</h3><p>Un espacio pensado para conectar, compartir y disfrutar la experiencia.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. BANNER FRASE — fondo: flores oscuro -->
+<div class="floral-banner">
+  <div class="fade-in" style="text-align:center;">
+    <h2>No es solo una clase.<br><em>Es una experiencia exclusiva para vos.</em></h2>
+    <div style="margin-top:2.5rem;">
+      <a href="https://aguadelpilar.mitiendanube.com/checkout" target="_blank" rel="noopener" class="btn">Reservar mi lugar</a>
+    </div>
+  </div>
+</div>
+
+<!-- 6. ITINERARIO — crema liso -->
+<section class="section-crema" id="itinerario">
+  <div class="container fade-in">
+    <span class="section-eyebrow">El d&iacute;a del evento</span>
+    <h2>Itinerario de la <em>experiencia</em></h2>
+    <div class="gold-line"></div>
+    <div class="timeline">
+      <div class="timeline-item"><div class="time">10:00 hs</div><div class="desc">Recepci&oacute;n, acreditaci&oacute;n y bienvenida</div></div>
+      <div class="timeline-item"><div class="time">10:30 hs</div><div class="desc">Masterclass de Pilates Barre</div></div>
+      <div class="timeline-item"><div class="time">12:30 hs</div><div class="desc">Sesi&oacute;n de elongaci&oacute;n, respiraci&oacute;n consciente y relajaci&oacute;n guiada</div></div>
+      <div class="timeline-item"><div class="time">13:30 hs</div><div class="desc">Brunch saludable &amp; momento de conexi&oacute;n</div></div>
+      <div class="timeline-item"><div class="time">14:30 hs</div><div class="desc">Acceso exclusivo a la boutique de Agua del Pilar para descubrir nuestras colecciones de activewear, bikinis, bodys y batas de seda de dise&ntilde;o propio</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SEDE DEL EVENTO — blanco liso -->
+<section class="venue-section" id="sede">
+  <div class="container fade-in">
+    <div class="venue-header">
+      <span class="section-eyebrow">Sede del evento</span>
+      <h2>Howard Johnson <em>Ezeiza</em></h2>
+      <div class="gold-line gold-line-center"></div>
+      <p class="body-text" style="margin:0 auto;">Un entorno exclusivo rodeado de naturaleza, con todas las comodidades para vivir una experiencia &uacute;nica de bienestar y conexi&oacute;n.</p>
+    </div>
+    <div class="venue-gallery">
+      <img src="img/hj-spa.jpg" alt="Spa &amp; Wellness - Howard Johnson Ezeiza">
+      <img src="img/hj-events.jpg" alt="Sal&oacute;n de eventos - Howard Johnson Ezeiza">
+      <img src="img/hj-resto.jpg" alt="Restaurante - Howard Johnson Ezeiza">
+    </div>
+    <div class="venue-info">
+      <div class="venue-info-text">
+        <h3>Howard Johnson Resort &amp; Convention Center</h3>
+        <p>Autopista Ezeiza-Ca&ntilde;uelas Km 40.5, Ezeiza, Buenos Aires</p>
+      </div>
+      <a href="https://www.google.com/maps/place/Howard+Johnson+Hotel+%26+Convention+Center+Ezeiza/@-34.8643564,-58.5835777,17z" target="_blank" rel="noopener" class="venue-map-link">&#9656; C&oacute;mo llegar</a>
+    </div>
+  </div>
+</section>
+
+<!-- INFO IMPORTANTE — blanco liso -->
+<section style="background:var(--blanco);" id="info">
+  <div class="container fade-in">
+    <span class="section-eyebrow">Antes de asistir</span>
+    <h2>Informaci&oacute;n <em>importante</em></h2>
+    <div class="gold-line"></div>
+    <ul class="info-list">
+      <li>Cupos limitados. Asegur&aacute; tu lugar con anticipaci&oacute;n.</li>
+      <li>Se recomienda asistir con ropa c&oacute;moda en tonos black / negro para la pr&aacute;ctica.</li>
+      <li>Sugerimos llegar 10 minutos antes del inicio de la experiencia.</li>
+      <li>La entrada es personal e intransferible.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- RESERVA TU LUGAR — fondo: flores oscuro -->
+<section class="reserva-section" id="inscripcion">
+  <div class="reserva-content fade-in">
+    <span class="section-eyebrow">Cupos limitados</span>
+    <h2>Reserv&aacute; <em>tu lugar</em></h2>
+    <div class="gold-line gold-line-center" style="background:var(--dorado);"></div>
+    <p class="body-text">Una experiencia creada por Agua del Pilar para conectar movimiento, bienestar y estilo en un entorno pensado para inspirar conexi&oacute;n y armon&iacute;a.</p>
+    <p class="reserva-date" style="margin-top:1.5rem;"><strong>10 de agosto, 2026</strong> &middot; 10:00 a 15:00 hs &middot; Howard Johnson Ezeiza</p>
+    <div style="margin-top:2rem;">
+      <a href="https://aguadelpilar.mitiendanube.com/checkout" target="_blank" rel="noopener" class="reserva-btn">Inscribirme</a>
+    </div>
+  </div>
+</section>
+
+<!-- 9. FAQ — beige liso -->
+<section class="faq-section" id="faq">
+  <div class="container fade-in">
+    <span class="section-eyebrow">Consultas</span>
+    <h2>Preguntas <em>frecuentes</em></h2>
+    <div class="gold-line"></div>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">&iquest;Necesito tener experiencia previa en Pilates?</button><div class="faq-answer"><p>No, no es necesario. La clase est&aacute; dise&ntilde;ada para todos los niveles. La instructora guiar&aacute; cada movimiento de forma personalizada para que disfrutes la experiencia sin importar tu nivel.</p></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">&iquest;Qu&eacute; tengo que llevar el d&iacute;a del evento?</button><div class="faq-answer"><p>Solo necesit&aacute;s venir con ropa c&oacute;moda, preferentemente en tonos negros. No es necesario traer mat ni equipamiento, todo estar&aacute; provisto en el lugar.</p></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">&iquest;D&oacute;nde se realiza el evento?</button><div class="faq-answer"><p>El evento se realizar&aacute; en el Howard Johnson Resort &amp; Convention Center Ezeiza, ubicado en Autopista Ezeiza-Ca&ntilde;uelas Km 40.5. Pod&eacute;s ver la ubicaci&oacute;n exacta en <a href="https://www.google.com/maps/place/Howard+Johnson+Hotel+%26+Convention+Center+Ezeiza/@-34.8643564,-58.5835777,17z" target="_blank" rel="noopener" style="color:var(--dorado);text-decoration:underline;">Google Maps</a>.</p></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">&iquest;Puedo ir con una amiga?</button><div class="faq-answer"><p>&iexcl;Por supuesto! Cada persona debe tener su entrada individual. Los cupos son limitados, as&iacute; que te recomendamos reservar ambos lugares lo antes posible.</p></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">&iquest;Qu&eacute; pasa si no puedo asistir despu&eacute;s de inscribirme?</button><div class="faq-answer"><p>Te pedimos que nos avises con la mayor anticipaci&oacute;n posible para poder liberar tu lugar. Pod&eacute;s comunicarte por Instagram o por email. La entrada es personal e intransferible.</p></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">&iquest;El brunch est&aacute; incluido en la entrada?</button><div class="faq-answer"><p>S&iacute;, el brunch saludable est&aacute; incluido en tu acceso. Si ten&eacute;s alguna restricci&oacute;n alimentaria, pod&eacute;s inform&aacute;rnoslo previamente para que lo tengamos en cuenta.</p></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">&iquest;Cu&aacute;nto dura la experiencia completa?</button><div class="faq-answer"><p>La experiencia completa dura aproximadamente 5 horas, desde las 10:00 hasta las 14:30 hs. Incluye la masterclass, sesi&oacute;n de elongaci&oacute;n, brunch y acceso a la boutique exclusiva de Agua del Pilar.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="https://www.aguadelpilar.com.ar" class="brand-footer">Agua <span style="color:var(--dorado);">del</span> Pilar</a>
+  <p>Indumentaria hecha con pasi&oacute;n, dedicaci&oacute;n y mucho amor por los detalles.</p>
+  <div class="socials">
+    <a href="https://www.instagram.com/agua.delpilar" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.aguadelpilar.com.ar" target="_blank" rel="noopener">Web</a>
+  </div>
+  <p style="margin-top:1.5rem; font-size:.75rem; opacity:.5;">&copy; 2026 Agua del Pilar. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+  const eventDate = new Date('2026-08-10T10:00:00-03:00').getTime();
+  function updateCountdown() {
+    const diff = eventDate - Date.now();
+    if (diff <= 0) { ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(id => document.getElementById(id).textContent = '00'); return; }
+    document.getElementById('cd-days').textContent = String(Math.floor(diff / 864e5)).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(Math.floor((diff / 36e5) % 24)).padStart(2,'0');
+    document.getElementById('cd-mins').textContent = String(Math.floor((diff / 6e4) % 60)).padStart(2,'0');
+    document.getElementById('cd-secs').textContent = String(Math.floor((diff / 1e3) % 60)).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
+</script>
+
+</body>
+</html>
